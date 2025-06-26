@@ -67,9 +67,9 @@ module.exports.editRoute = async (req, res) => {
     req.flash("error", "Listing you requested for does not exist!");
     res.redirect("/listings");
   }
-  let originalUrl = listing.image.url;
-  originalUrl = originalUrl.replace("/upload", "/upload/h_100,w_100");
-  res.render("listings/edit.ejs", { listing, originalUrl });
+  // let originalUrl = listing.image.url;
+  // originalUrl = originalUrl.replace("/upload", "/upload/h_100,w_100");
+  res.render("listings/edit.ejs", { listing });
 };
 
 // Update Route

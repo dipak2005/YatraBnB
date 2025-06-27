@@ -1,7 +1,7 @@
 # 🏠 YatraBnB (MERN Stack)
 A MERN stack short-term rental platform enables users to list and book stays with real-time map integration.
 
-**Frontend:** HTML, CSS, JavaScript, EJS (Embedded JavaScript Templates)  
+**Frontend:** HTML5, CSS3, JavaScript, EJS (Embedded JavaScript Templates)  
 **Backend:** Node.js, Express.js  
 **Database:** MongoDB (with Mongoose)  
 **Other:** MapLibre GL JS, Cloudinary, Render, etc.
@@ -50,6 +50,30 @@ https://yatrabnb.onrender.com
 📂 Modular & Clean File Structure
 
 
+---
 
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/YatraBnB.git
+```
+### 2. Install Dependencies
+```bash
+cd YatraBnB
+npm install
+```
+### 3. Create .env File 
+```bash
+MONGO_URI=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+MAP_TOKEN=
+```
+### 4. Run the app
+```bash
+npm run dev
+```
 
 

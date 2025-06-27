@@ -105,11 +105,11 @@
     </div>
   </div>
      <script>
-    const map = new maplibregl.Map({
+    const map = new maplibregl.Map({ 
     container: 'map',
     style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=YbR2mS3rAaOElYz54MyE',
     center: ["<%= listing.geometry.coordinates[0] %>","<%= listing.geometry.coordinates[1] %>"],
-    zoom: 12,
+    zoom: 12
   });
 
    
@@ -117,6 +117,7 @@
 
 
   map.addControl(new maplibregl.NavigationControl());
+  
 
   new maplibregl.Marker({ color: "red" })
     .setLngLat(["<%= listing.geometry.coordinates[0] %>", "<%= listing.geometry.coordinates[1] %>"])

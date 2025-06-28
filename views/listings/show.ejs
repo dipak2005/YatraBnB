@@ -1,7 +1,10 @@
 <% layout("layouts/boilerplate") %>
-<script>
-  const coordinates = "<%- JSON.stringify(listing.geometry.coordinates) %>"
-</script>
+
+
+
+  <script>
+    const coordinates = "<%- JSON.stringify(listing.geometry.coordinates) %>"
+  </script>
   <div class="row mt-3">
     <div class="col-8 offset-2">
 
@@ -11,7 +14,7 @@
           <%= listing.title %>
         </h3>
         <a href="<%= listing.image.url %>" target="_blank">
-        <img src="<%= listing.image.url %>"  class="single-listing-image" alt="listing_image" >
+          <img src="<%= listing.image.url %>" class="single-listing-image" alt="listing_image">
         </a>
         <div class="card-body">
           <i class="card-text"><b>Owened by <%= listing.owner.username %></b></i>
@@ -20,7 +23,7 @@
             </b></p>
           <p class="card-text">
             <%= listing.description %>
-            <!-- <p> <%= listing.geometry.coordinates[0] %> ,<%= listing.geometry.coordinates[1] %> </p> -->
+              <!-- <p> <%= listing.geometry.coordinates[0] %> ,<%= listing.geometry.coordinates[1] %> </p> -->
           </p>
           <p class="card-text"><b> &#8377 <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %></b></p>
 
@@ -94,41 +97,72 @@
               </div>
               <% } %>
           </div>
-<hr>
+          <hr>
           <% } %>
       </div>
       <div class="single-listing-image map-img mb-3">
-        
+
         <h3>Where you'll be</h3>
         <div id="map"></div>
       </div>
     </div>
   </div>
-     <script>
-    const map = new maplibregl.Map({ 
-    container: 'map',
-    style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=YbR2mS3rAaOElYz54MyE',
-    center: ["<%= listing.geometry.coordinates[0] %>","<%= listing.geometry.coordinates[1] %>"],
-    zoom: 12
-  });
+  <script>
+    // const control = new MapLibreSearchControl();
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=YbR2mS3rAaOElYz54MyE',
+      center: ["<%= listing.geometry.coordinates[0] %>", "<%= listing.geometry.coordinates[1] %>"],
+      zoom: 14
+    });
 
-   
+
+
+
+
+    map.addControl(new maplibregl.NavigationControl());
+    map.addControl(new maplibregl.FullscreenControl(), 'top-right');
+    map.addControl(new maplibregl.GeolocateControl({
+  positionOptions: { enableHighAccuracy: true },}));
+    map.addControl(new maplibregl.ScaleControl());
     
 
 
-  map.addControl(new maplibregl.NavigationControl());
-  
 
-  new maplibregl.Marker({ color: "red" })
-    .setLngLat(["<%= listing.geometry.coordinates[0] %>", "<%= listing.geometry.coordinates[1] %>"])
-    .setPopup(
-      new maplibregl.Popup({ offset: 25 })
-        .setHTML(`<h4><b><%= listing.location %></b></h4><%= listing.title%>`)
-    )
-    .addTo(map);
-   </script>
-  </div>
+    new maplibregl.Marker({color : "red"})
+      .setLngLat(["<%= listing.geometry.coordinates[0] %>", "<%= listing.geometry.coordinates[1] %>"])
+      .setPopup(
+        new maplibregl.Popup({ offset: 25 })
+          .setHTML(`<h4><b><%= listing.location %></b></h4><%= listing.title%>`)
+      )
+      .addTo(map);
 
+//    navigator.geolocation.getCurrentPosition((position) => {
+//   const { latitude, longitude } = position.coords;
+
+//   // Add custom marker
+//   const el = document.createElement('div');
+//   el.className = 'custom-marker';
+//   el.style.backgroundImage = 'https://png.pngtree.com/png-clipart/20220729/original/pngtree-home-pin-map-location-icon-marker-png-image_8438160.png';
+//   el.style.width = '30px';
+//   el.style.height = '30px';
+//   el.style.backgroundSize = 'cover';
+//   el.style.borderRadius = '50%';
+
+//   new maplibregl.Marker(el)
+//     .setLngLat([longitude, latitude])
+//     .setPopup( new maplibregl.Popup({ offset: 25 })
+//           .setHTML(`<b>Home</b>`))
+//     .addTo(map);
+
+//   // Center map
+//   map.flyTo({ center: [longitude, latitude], zoom: 14 });
+//    });
+//   </script>
+<!-- //   </div> -->
+<!-- // <style> -->
+<!-- // .custom-marker { -->
+<!-- //   box-shadow: 0 0 5px #333; -->
+<!-- // } -->
+<!-- // </style> -->
   <!-- <script src="/js/map.js"></script> -->
-    
- 
